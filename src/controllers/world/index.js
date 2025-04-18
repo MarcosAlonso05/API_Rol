@@ -1,8 +1,8 @@
-import world, {getRoom, getVisitedRoom, markVisited} from "../../models/world";
+import world, {getRoom, getVisitedRooms, markVisited} from "../../models/world/index.js";
 
 const controllerWorld = {
     getVisited(req, res){
-        const visited = getVisitedRoom()
+        const visited = getVisitedRooms()
         res.send(visited)
     },
 
@@ -27,7 +27,7 @@ const controllerWorld = {
         }
 
         markVisited(x, y)
-        res.send({ message: "Room ${x}-${y} visited" })
+        res.send({ message: `Room ${x}-${y} visited` })
     }
 }
 

@@ -1,4 +1,4 @@
-import classes from "../classes";
+import classes from "../classes/index.js";
 
 let players = []
 

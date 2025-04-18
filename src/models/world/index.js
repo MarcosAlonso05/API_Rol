@@ -1,3 +1,5 @@
+import {createRoom} from "../room/index.js";
+
 const world = []
 
 const WIDTH = 5
@@ -7,15 +9,7 @@ export function initWorld(){
     for (let y = 0; y < HEIGHT; y++) {
         let row = []
         for (let x = 0; x < WIDTH; x++) {
-            row.push({
-                id: '${x}-${y}',
-                x,
-                y,
-                description: 'Room in (${x}, ${y})',
-                enemies: [],
-                items: [],
-                visited: false,
-            })
+            row.push(createRoom(x, y))
         }
         world.push(row)
     }
@@ -28,7 +22,7 @@ export function getRoom(x, y){
     return null
 }
 
-export function getVisitedRoom(){
+export function getVisitedRooms() {
     return world.flat().filter(room => room.visited)
 }
 

@@ -1,7 +1,7 @@
 'use strict'
 
 import { Router } from 'express'
-import controllerWorld from "../../controllers/world";
+import controllerWorld from "../../controllers/world/index.js";
 
 let router = Router()
 
