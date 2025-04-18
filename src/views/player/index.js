@@ -1,28 +1,20 @@
 'use strict'
 
-import playerController from "../../controllers/player/index.js"
 import { Router } from 'express'
+import controllerPlayers from "../../controllers/player/index.js";
 
 let router = Router()
 
-// Obtener info del player
-router.get('/', (req, res) => {
-    res.send(playerController.getPlayer())
+router.post('/', (req, res) =>{
+    controllerPlayers.create(req, res)
 })
 
-// Obtener info de la habitación actual del player
-router.get('/room', (req, res) => {
-    res.send(playerController.getHabitacionActual())
+router.get('/', (req, res) =>{
+    controllerPlayers.listP(req, res)
 })
 
-// Mover player a una habitación específica (PUT /player/room/1-2)
-router.put('/room/:id', (req, res) => {
-    const result = playerController.movePlayer(req.params.id)
-    if (result.error) {
-        res.status(400).send(result)
-    } else {
-        res.send(result)
-    }
+router.get('/:id', (req, res) =>{
+    controllerPlayers.getPlayerByID(req, res)
 })
 
 export default router
