@@ -1,18 +1,13 @@
-import {createRoom} from "../room/index.js";
+import fs from 'fs'
+import path from 'path'
 
 const world = []
 
-const WIDTH = 5
-const HEIGHT = 5
-
-export function initWorld(){
-    for (let y = 0; y < HEIGHT; y++) {
-        let row = []
-        for (let x = 0; x < WIDTH; x++) {
-            row.push(createRoom(x, y))
-        }
-        world.push(row)
-    }
+export function initWorldFromSample() {
+    const content = fs.readFileSync(path.resolve('src/data/sampleWorld.json'))
+    const data = JSON.parse(content)
+    world.length = 0
+    world.push(...data)
 }
 
 export function getRoom(x, y){

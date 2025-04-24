@@ -12,7 +12,7 @@ const controllerWorld = {
         const room = getRoom(x, y)
 
         if(!room){
-            return res.status(404).send({error: "Room found"})
+            return res.status(404).send({error: "Room not found"})
         }
 
         res.send(room)
@@ -23,7 +23,7 @@ const controllerWorld = {
         const room = getRoom(x, y)
 
         if (!room) {
-            return res.status(404).send({ error: "Room found" })
+            return res.status(404).send({ error: "Room not found" })
         }
 
         markVisited(x, y)
