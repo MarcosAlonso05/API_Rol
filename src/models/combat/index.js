@@ -1,4 +1,54 @@
 
+let combats = []
+
+export function startCombat(player, enemy) {
+    const combat = {
+        id: combats.length + 1,
+        player,
+        enemy,
+        turn: "player",
+        finished: false,
+        log: [],
+    }
+
+    combats.push(combat)
+    return combat
+}
+
+export function getCombat(id) {
+    return combats.find(c => c.id === parseInt(id))
+}
+
+export function performPlayerAction(combatId, action) {
+    const combat = getCombat(combatId)
+    if (!combat || combat.finished) return null
+
+    let result
+    if (action === "attack") {
+        result = calculateDamage(combat.player, combat.enemy)
+        combat.enemy.hp -= result.damage
+        combat.log.push({ actor: "player", ...result })
+
+        if (combat.enemy.hp <= 0) {
+            combat.finished = true
+            combat.log.push({ result: "Player wins!" })
+            return combat
+        }
+
+        // Turno del enemigo
+        const enemyResult = calculateDamage(combat.enemy, combat.player)
+        combat.player.hp -= enemyResult.damage
+        combat.log.push({ actor: "enemy", ...enemyResult })
+
+        if (combat.player.hp <= 0) {
+            combat.finished = true
+            combat.log.push({ result: "Enemy wins!" })
+        }
+    }
+
+    return combat
+}
+
 function damageCal(attacker, deffender){
     const baseDamage = attacker.power;
     const speedDiff = attacker.speed - deffender.speed;
@@ -18,28 +68,4 @@ function damageCal(attacker, deffender){
     return { damage, type: isCrit ? "critical" : "normal"}
 }
 
-function playerTurn(player, enemy){
-    const {damage, type} = damageCal(player, enemy);
-    enemy.hp -= damage;
-    return { damage, type, target: "enemy", enemyHP: enemy.hp };
-}
-
-function enemyTurn(enemy, player) {
-    const { damage, type } = calculateDamage(enemy, player);
-    player.hp -= damage;
-    return { damage, type, target: "player", playerHP: player.hp };
-}
-
-export function startCombat(player, enemy) {
-    const log = [];
-
-    while (player.hp > 0 && enemy.hp > 0) {
-        log.push(playerTurn(player, enemy));
-        if (enemy.hp <= 0) break;
-
-        log.push(enemyTurn(enemy, player));
-    }
-
-    const result = player.hp > 0 ? "player wins" : "enemy wins";
-    return { log, result };
-}
+export {combats}
