@@ -8,12 +8,31 @@ import { getEnemyByPosition } from "../enemy/index.js"
 import { startCombat }        from "../combat/index.js"
 
 let players = [];
+let nextPlayerId = 1;
 
 export function initPlayersFromSample() {
     const content = fs.readFileSync(path.resolve("src/data/samplePlayers.json"));
-    const data = JSON.parse(content);
+    const data    = JSON.parse(content);
+
     players.length = 0;
-    players.push(...data);
+    for (const entry of data) {
+        const classData = classes[entry.classe.toLowerCase()];
+        if (!classData) continue; // o lanza error si prefieres
+
+        players.push({
+            id:        entry.id,
+            name:      entry.name,
+            classe:    entry.classe,
+            hp:        classData.hp,
+            mp:        classData.mp,
+            power:     classData.power,
+            speed:     classData.speed,
+            position:  entry.position,
+            inventory: entry.inventory
+        });
+    }
+
+    nextPlayerId = players.reduce((max, p) => Math.max(max, p.id), 0) + 1;
 }
 
 export function createPlayer({ name, classe }) {
@@ -23,15 +42,15 @@ export function createPlayer({ name, classe }) {
     }
 
     const newPlayer = {
-        id: players.length + 1,
+        id:        nextPlayerId++,
         name,
         classe,
-        hp: classData.hp,
-        mp: classData.mp,
-        power: classData.power,
-        speed: classData.speed,
-        position: { x: 0, y: 0 },
-        inventory: [],
+        hp:        classData.hp,
+        mp:        classData.mp,
+        power:     classData.power,
+        speed:     classData.speed,
+        position:  { x: 0, y: 0 },
+        inventory: []
     };
 
     players.push(newPlayer);

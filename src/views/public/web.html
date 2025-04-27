@@ -1,8 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>API ROL</title>
     <link rel="stylesheet" href="/web.css" />
 </head>
@@ -16,19 +16,34 @@
         <div id="map"></div>
     </section>
 
-    <aside id="controls">
-        <h2>Controles</h2>
-        <div class="btn-group">
-            <button data-dir="north">⬆️ North</button>
-            <button data-dir="west">⬅️ West</button>
-            <button data-dir="south">⬇️ South</button>
-            <button data-dir="east">➡️ East</button>
+    <aside id="sidebar">
+        <div id="player-panel">
+            <h2>Jugador</h2>
+            <ul id="player-stats">
+            </ul>
         </div>
-        <div class="btn-group">
-            <button id="attack-btn">⚔️ Attack</button>
+
+        <div id="controls">
+            <h2>Controles</h2>
+            <div class="btn-group">
+                <button data-dir="north">⬆️ North</button>
+                <button data-dir="west">⬅️ West</button>
+                <button data-dir="south">⬇️ South</button>
+                <button data-dir="east">➡️ East</button>
+            </div>
+            <div class="btn-group">
+                <button id="attack-btn">⚔️ Attack</button>
+            </div>
+        </div>
+
+        <div id="enemy-panel" class="hidden">
+            <h2>Enemigo</h2>
+            <ul id="enemy-stats">
+            </ul>
         </div>
     </aside>
 </main>
+
 <script src="/web.js"></script>
 </body>
 </html>

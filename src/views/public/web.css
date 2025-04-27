@@ -21,7 +21,7 @@ header {
 main {
     flex: 1;
     display: flex;
-    padding: 1rem;
+    overflow: hidden;
 }
 
 #map-container {
@@ -29,47 +29,65 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: auto;
 }
 #map {
     display: grid;
-    grid-template-columns: repeat(10, 30px);
-    grid-auto-rows: 30px;
     gap: 2px;
     background: #333;
     padding: 4px;
 }
-#map .cell {
-    width: 30px;
-    height: 30px;
+.cell {
+    width: 40px;
+    height: 40px;
     border: 1px solid #444;
 }
-#map .cell.unvisited {
+.cell.unvisited {
     background: #000;
 }
-#map .cell.visited {
+.cell.visited {
     background: #a97c50;
 }
-#map .cell.player {
+.cell.player {
     background: #3caa3c;
 }
-#map .cell.enemy::after {
+.cell.enemy::after {
     content: "";
     display: block;
-    width: 8px;
-    height: 8px;
+    width: 12px;
+    height: 12px;
     background: red;
     border-radius: 50%;
     margin: auto;
-    margin-top: 5px;
+    margin-top: 6px;
+}
+
+#sidebar {
+    flex: 1;
+    background: #1a1a1a;
+    padding: 1rem;
+    overflow-y: auto;
+}
+#sidebar h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    text-align: center;
+}
+#player-panel,
+#enemy-panel {
+    margin-bottom: 1.5rem;
+}
+#player-stats li,
+#enemy-stats li {
+    list-style: none;
+    margin: 0.3rem 0;
+}
+.hidden {
+    display: none;
 }
 
 #controls {
-    flex: 1;
-    padding-left: 1rem;
-}
-#controls h2 {
-    margin-bottom: 1rem;
-    text-align: center;
+    margin-bottom: 1.5rem;
 }
 .btn-group {
     display: flex;
@@ -80,10 +98,10 @@ button {
     background: #444;
     color: #fff;
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1.2rem;
     cursor: pointer;
     border-radius: 4px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     transition: background 0.2s;
 }
 button:hover {
