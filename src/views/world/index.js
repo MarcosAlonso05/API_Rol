@@ -5,7 +5,9 @@ import controllerWorld from "../../controllers/world/index.js";
 
 let router = Router()
 
-router.get('/', controllerWorld.getVisited)
+router.get('/', controllerWorld.getAllWorld)
+
+router.get('/visited', controllerWorld.getVisited)
 
 router.get('/:id', controllerWorld.getRoom)
 

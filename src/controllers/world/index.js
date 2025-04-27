@@ -1,33 +1,36 @@
-import world, {getRoom, getVisitedRooms, markVisited} from "../../models/world/index.js";
+import world, { getRoom, getVisitedRooms, markVisited } from "../../models/world/index.js";
 
 const controllerWorld = {
-    getVisited(req, res){
-        const visited = getVisitedRooms()
-        res.send(visited)
+    getAllWorld(req, res) {
+        res.send(world);
     },
 
-    getRoom(req, res){
-        const [x, y] = req.params.id.split("-").map(Number)
+    getVisited(req, res) {
+        const visited = getVisitedRooms();
+        res.send(visited);
+    },
 
-        const room = getRoom(x, y)
+    getRoom(req, res) {
+        const [x, y] = req.params.id.split("-").map(Number);
+        const room = getRoom(x, y);
 
-        if(!room){
-            return res.status(404).send({error: "Room not found"})
+        if (!room) {
+            return res.status(404).send({ error: "Room not found" });
         }
 
-        res.send(room)
+        res.send(room);
     },
 
     markVisited(req, res) {
-        const [x, y] = req.params.id.split("-").map(Number)
-        const room = getRoom(x, y)
+        const [x, y] = req.params.id.split("-").map(Number);
+        const room = getRoom(x, y);
 
         if (!room) {
-            return res.status(404).send({ error: "Room not found" })
+            return res.status(404).send({ error: "Room not found" });
         }
 
-        markVisited(x, y)
-        res.send({ message: `Room ${x}-${y} visited` })
+        markVisited(x, y);
+        res.send({ message: `Room ${x}-${y} visited` });
     }
 }
 
