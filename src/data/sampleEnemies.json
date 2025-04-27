@@ -1,0 +1,26 @@
+[
+  {
+    "type": "wolf",
+    "position": { "x": 1, "y": 0 }
+  },
+  {
+    "type": "skeleton",
+    "position": { "x": 2, "y": 1 }
+  },
+  {
+    "type": "sorcerer",
+    "position": { "x": 3, "y": 2 }
+  },
+  {
+    "type": "slime",
+    "position": { "x": 0, "y": 2 }
+  },
+  {
+    "type": "zombie",
+    "position": { "x": 4, "y": 3 }
+  },
+  {
+    "type": "fish",
+    "position": { "x": 0, "y": 0 }
+  }
+]

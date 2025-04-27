@@ -1,8 +1,22 @@
+import fs from 'fs'
+import path from 'path'
 import npc_types from "../npc_types/index.js";
 
 let enemies = []
+let currentId = 1
 
-export function createEnemy(npc_type, position = { x: 0, y: 0 }){
+export function initEnemiesFromSample() {
+    const content = fs.readFileSync(path.resolve('src/data/sampleEnemies.json'))
+    const data = JSON.parse(content)
+
+    enemies.length = 0
+
+    for (const enemy of data) {
+        createEnemy(enemy.type, enemy.position)
+    }
+}
+
+export function createEnemy(npc_type, position = { x: 0, y: 0 }) {
     const typeData = npc_types[npc_type]
 
     if (!typeData) {

@@ -6,7 +6,6 @@
       "y": 0,
       "description": "Start room",
       "enemies": [],
-      "items": [],
       "visited": true
     },
     {
@@ -15,7 +14,6 @@
       "y": 0,
       "description": "North room",
       "enemies": [],
-      "items": [],
       "visited": false
     }
   ],
@@ -26,7 +24,6 @@
       "y": 1,
       "description": "West room",
       "enemies": [],
-      "items": [],
       "visited": false
     },
     {
@@ -35,7 +32,6 @@
       "y": 1,
       "description": "East room",
       "enemies": [],
-      "items": [],
       "visited": false
     }
   ]
