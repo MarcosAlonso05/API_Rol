@@ -35,6 +35,10 @@ const controllerPlayers = {
             return res.status(400).send(result)
         }
 
+        if (result.combatId) {
+            return res.status(201).send(result)
+        }
+
         res.send(result)
     }
 }

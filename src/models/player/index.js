@@ -2,6 +2,10 @@ import fs from "fs";
 import path from "path";
 import classes from "../classes/index.js";
 
+import { markVisited }        from "../world/index.js"
+import { getEnemyByPosition } from "../enemy/index.js"
+import { startCombat }        from "../combat/index.js"
+
 let players = [];
 
 export function initPlayersFromSample() {
@@ -72,6 +76,17 @@ export function movePlayer(id, direction) {
     }
 
     player.position = { x, y }
+    markVisited(x, y)
+
+    const enemy = getEnemyByPosition(x, y)
+    if (enemy) {
+        const combat = startCombat(player, enemy)
+        return {
+            message: `¡Has entrado en combate contra un ${enemy.type}!`,
+            combatId: combat.id,
+            combat
+        }
+    }
 
     return { message: `Player moved ${direction}`, position: player.position }
 }

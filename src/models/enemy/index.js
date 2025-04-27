@@ -46,4 +46,8 @@ export function getEnemyById(id) {
     return enemies.find(e => e.id === parseInt(id))
 }
 
+export function getEnemyByPosition(x, y) {
+    return enemies.find(e => e.position.x === x && e.position.y === y)
+}
+
 export default enemies
