@@ -1,0 +1,91 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    background: #111;
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+header {
+    text-align: center;
+    padding: 1rem 0;
+    background: #222;
+    border-bottom: 1px solid #333;
+}
+main {
+    flex: 1;
+    display: flex;
+    padding: 1rem;
+}
+
+#map-container {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#map {
+    display: grid;
+    grid-template-columns: repeat(10, 30px);
+    grid-auto-rows: 30px;
+    gap: 2px;
+    background: #333;
+    padding: 4px;
+}
+#map .cell {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #444;
+}
+#map .cell.unvisited {
+    background: #000;
+}
+#map .cell.visited {
+    background: #a97c50;
+}
+#map .cell.player {
+    background: #3caa3c;
+}
+#map .cell.enemy::after {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: red;
+    border-radius: 50%;
+    margin: auto;
+    margin-top: 5px;
+}
+
+#controls {
+    flex: 1;
+    padding-left: 1rem;
+}
+#controls h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+.btn-group {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+}
+button {
+    background: #444;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+button:hover {
+    background: #555;
+}
