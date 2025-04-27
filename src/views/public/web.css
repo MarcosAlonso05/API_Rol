@@ -1,0 +1,109 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    background: #111;
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+header {
+    text-align: center;
+    padding: 1rem 0;
+    background: #222;
+    border-bottom: 1px solid #333;
+}
+main {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+#map-container {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+#map {
+    display: grid;
+    gap: 2px;
+    background: #333;
+    padding: 4px;
+}
+.cell {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #444;
+}
+.cell.unvisited {
+    background: #000;
+}
+.cell.visited {
+    background: #a97c50;
+}
+.cell.player {
+    background: #3caa3c;
+}
+.cell.enemy::after {
+    content: "";
+    display: block;
+    width: 12px;
+    height: 12px;
+    background: red;
+    border-radius: 50%;
+    margin: auto;
+    margin-top: 6px;
+}
+
+#sidebar {
+    flex: 1;
+    background: #1a1a1a;
+    padding: 1rem;
+    overflow-y: auto;
+}
+#sidebar h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    text-align: center;
+}
+#player-panel,
+#enemy-panel {
+    margin-bottom: 1.5rem;
+}
+#player-stats li,
+#enemy-stats li {
+    list-style: none;
+    margin: 0.3rem 0;
+}
+.hidden {
+    display: none;
+}
+
+#controls {
+    margin-bottom: 1.5rem;
+}
+.btn-group {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+}
+button {
+    background: #444;
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+button:hover {
+    background: #555;
+}
