@@ -46,6 +46,11 @@ export function getEnemyById(id) {
     return enemies.find(e => e.id === parseInt(id))
 }
 
+export function removeEnemyById(id) {
+    const idx = enemies.findIndex(e => e.id === parseInt(id));
+    if (idx !== -1) enemies.splice(idx, 1);
+}
+
 export function getEnemyByPosition(x, y) {
     return enemies.find(e => e.position.x === x && e.position.y === y)
 }

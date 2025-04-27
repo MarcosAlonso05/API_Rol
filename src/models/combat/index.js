@@ -1,3 +1,5 @@
+import enemies, { removeEnemyById } from "../enemy/index.js";
+import { getRoom }                 from "../world/index.js"
 
 let combats = []
 
@@ -32,6 +34,14 @@ export function performPlayerAction(combatId, action) {
         if (combat.enemy.hp <= 0) {
             combat.finished = true
             combat.log.push({ result: "Player wins!" })
+            removeEnemyById(combat.enemy.id)
+
+            const { x, y } = combat.enemy.position;
+            const room = getRoom(x, y);
+            if (room) {
+                room.enemies = room.enemies.filter(e => e.id !== combat.enemy.id);
+            }
+
             return combat
         }
 

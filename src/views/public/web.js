@@ -87,7 +87,7 @@ async function move(direction) {
     } else {
         if (data.combatId) {
             currentCombatId = data.combatId;
-            alert(`¡Combate iniciado contra ${data.combat.enemy.type}!`);
+            alert(`Combat initiated against ${data.combat.enemy.type}!`);
         }
         await loadWorld();
     }
@@ -95,7 +95,7 @@ async function move(direction) {
 
 async function attack() {
     if (!currentCombatId) {
-        alert('No hay combate activo');
+        alert('There is no active combat');
         return;
     }
     const res  = await fetch(`/combat/${currentCombatId}/action`, {
