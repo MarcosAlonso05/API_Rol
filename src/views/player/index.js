@@ -17,4 +17,7 @@ router.get('/:id', (req, res) =>{
     controllerPlayers.getPlayerByID(req, res)
 })
 
+router.post('/:id/move', (req, res) =>{
+    controllerPlayers.move(req, res)
+})
 export default router

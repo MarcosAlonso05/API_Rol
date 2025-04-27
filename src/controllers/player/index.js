@@ -1,4 +1,4 @@
-import { createPlayer, getAllPlayers, getPlayerByID } from "../../models/player/index.js"
+import { createPlayer, getAllPlayers, getPlayerByID, movePlayer } from "../../models/player/index.js"
 
 const controllerPlayers = {
     create(req, res) {
@@ -24,6 +24,18 @@ const controllerPlayers = {
         }
 
         res.send(player)
+    },
+    move(req, res) {
+        const { id } = req.params
+        const { direction } = req.body
+
+        const result = movePlayer(id, direction)
+
+        if (result.error) {
+            return res.status(400).send(result)
+        }
+
+        res.send(result)
     }
 }
 

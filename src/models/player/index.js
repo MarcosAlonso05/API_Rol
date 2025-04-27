@@ -41,4 +41,39 @@ export function getAllPlayers() {
     return players;
 }
 
+export function movePlayer(id, direction) {
+    const player = players.find(p => p.id === parseInt(id))
+
+    if (!player) {
+        return { error: "Player not found" }
+    }
+
+    let { x, y } = player.position
+
+    switch (direction) {
+        case 'north':
+            y -= 1
+            break
+        case 'south':
+            y += 1
+            break
+        case 'west':
+            x -= 1
+            break
+        case 'east':
+            x += 1
+            break
+        default:
+            return { error: "Invalid direction" }
+    }
+
+    if (y < 0 || y >= world.length || x < 0 || x >= world[0].length) {
+        return { error: "Cannot move outside the world" }
+    }
+
+    player.position = { x, y }
+
+    return { message: `Player moved ${direction}`, position: player.position }
+}
+
 export default players;

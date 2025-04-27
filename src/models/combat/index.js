@@ -35,7 +35,6 @@ export function performPlayerAction(combatId, action) {
             return combat
         }
 
-        // Turno del enemigo
         const enemyResult = calculateDamage(combat.enemy, combat.player)
         combat.player.hp -= enemyResult.damage
         combat.log.push({ actor: "enemy", ...enemyResult })
@@ -49,23 +48,23 @@ export function performPlayerAction(combatId, action) {
     return combat
 }
 
-function damageCal(attacker, deffender){
+function calculateDamage(attacker, defender) {
     const baseDamage = attacker.power;
-    const speedDiff = attacker.speed - deffender.speed;
+    const speedDiff = attacker.speed - defender.speed;
 
     const critAttack = Math.max(5, Math.min(50, 20 + speedDiff * 2));
     const missAttack = Math.max(0, 10 - speedDiff);
 
-    const  random = Math.random() * 100;
+    const random = Math.random() * 100;
 
-    if(random < missAttack){
-        return {damage: 0, type: "miss"};
+    if (random < missAttack) {
+        return { damage: 0, type: "miss" };
     }
 
     const isCrit = random < critAttack;
-    const damage = isCrit ? baseDamage * 2: baseDamage;
+    const damage = isCrit ? baseDamage * 2 : baseDamage;
 
-    return { damage, type: isCrit ? "critical" : "normal"}
+    return { damage, type: isCrit ? "critical" : "normal" };
 }
 
 export {combats}
