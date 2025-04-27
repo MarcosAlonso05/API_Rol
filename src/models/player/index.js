@@ -1,11 +1,20 @@
+import fs from "fs";
+import path from "path";
 import classes from "../classes/index.js";
 
-let players = []
+let players = [];
 
-export function createPlayer({name, classe}) {
-    const classData = classes[classe.toLowerCase()]
-    if(!classData){
-        return {error: "No valid class"}
+export function initPlayersFromSample() {
+    const content = fs.readFileSync(path.resolve("src/data/samplePlayers.json"));
+    const data = JSON.parse(content);
+    players.length = 0;
+    players.push(...data);
+}
+
+export function createPlayer({ name, classe }) {
+    const classData = classes[classe.toLowerCase()];
+    if (!classData) {
+        return { error: "No valid class" };
     }
 
     const newPlayer = {
@@ -18,18 +27,18 @@ export function createPlayer({name, classe}) {
         speed: classData.speed,
         position: { x: 0, y: 0 },
         inventory: [],
-    }
+    };
 
-    players.push(newPlayer)
-    return newPlayer
+    players.push(newPlayer);
+    return newPlayer;
 }
 
-export function getPlayerByID(id){
-    return players.find(j => j.id === parseInt(id))
+export function getPlayerByID(id) {
+    return players.find(j => j.id === parseInt(id));
 }
 
-export function getAllPlayers(){
-    return players
+export function getAllPlayers() {
+    return players;
 }
 
-export default players
+export default players;

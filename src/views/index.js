@@ -4,6 +4,7 @@ import express from 'express'
 import playerRoute from "./player/index.js"
 import worldRoute from "./world/index.js"
 import { initWorldFromSample } from "../models/world/index.js"
+import { initPlayersFromSample } from "../models/player/index.js";
 import enemyRoute from "./enemy/index.js"
 import combatRoute from"./combat/index.js"
 
@@ -11,6 +12,11 @@ let app = express()
 app.use(express.json())
 
 initWorldFromSample()
+initPlayersFromSample();
+
+app.get('/', (req, res) => {
+    res.send('Bienvenido al API Rool');
+});
 
 app.use('/player', playerRoute)
 app.use('/world', worldRoute)

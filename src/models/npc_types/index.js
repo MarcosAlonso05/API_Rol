@@ -42,3 +42,5 @@ const classesNPC = {
         description: "Just a FISH"
     },
 }
+
+export default classesNPC;
